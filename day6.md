@@ -705,3 +705,5 @@ creating same for the menu
 to remove any file if added mistakely
 git rm -r --cached serverOld 
 
+
+npm i automatically install all the packages from the package.json
