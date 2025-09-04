@@ -56,6 +56,7 @@ router.get("/:workType", async (req, res) => {
 });
 
 // updating the data.
+
 router.put("/:id", async (req, res) => {
   try {
     const personId = req.params.id; // extract the id from the URL parameter.

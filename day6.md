@@ -561,10 +561,23 @@ the :workType is a dynamic variable. : makes it dynamic
 
 ### Express router
 
-We have a lot of
+- We have a lot of Endpoints in a single file server.js.
 
+- This makes bad experience in code readability as well as code handling.
+
+- Express Router is a way to modularize and organise your route handling code in an express.js application.
+
+- so lets create a seperate file to manage endpoints /person and /menu
+
+- Express router is like traffic cop for you web server.
+
+- Express Router helps you organise and manaze these pages or endpoints in your web application. It's like creating seperate folders for diffrent type of tasks.
+
+create a folder route ----> personRoute.js
 
 person data
+
+```
 
 
 // create person data
@@ -597,10 +610,11 @@ app.get("/person", async (req, res) => {
   }
 });
 
+```
 
+dynamic routing in node of person data
 
-// dynamic routing in node of person data
-
+```
 app.get("/person/:workType", async (req, res) => {
   try {
     const workType = req.params.workType;
@@ -621,98 +635,138 @@ app.get("/person/:workType", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error " });
   }
 });
-
+```
 
 ### using router express
 
 const express = require('express')
-const router = express.Router() 
-
+const router = express.Router()
 
 // create person data
 
 router.post("/person", async (req, res) => {
-  try {
-    const data = req.body;
-    //  Create a new Person document using the mongoose model
-    const newPerson = new Person(data);
-    // Save the new person to the databse.
-    const response = await newPerson.save();
-    res.status(200).json(response);
-    console.log("data saved");
-  } catch (error) {
-    console.log("failed to get data", error);
-    res.status(500).json({ error: "Internal Server Error " });
-  }
+try {
+const data = req.body;
+// Create a new Person document using the mongoose model
+const newPerson = new Person(data);
+// Save the new person to the databse.
+const response = await newPerson.save();
+res.status(200).json(response);
+console.log("data saved");
+} catch (error) {
+console.log("failed to get data", error);
+res.status(500).json({ error: "Internal Server Error " });
+}
 });
 
 // get person data
 
 router.get("/person", async (req, res) => {
-  try {
-    const data = await Person.find();
-    console.log("data fetched");
-    res.status(200).json(data);
-  } catch (err) {
-    console.log("failed to get data", err);
-    res.status(500).json({ error: "Internal Server Error " });
-  }
+try {
+const data = await Person.find();
+console.log("data fetched");
+res.status(200).json(data);
+} catch (err) {
+console.log("failed to get data", err);
+res.status(500).json({ error: "Internal Server Error " });
+}
 });
-
-
 
 // dynamic routing in node
 
 router.get("/person/:workType", async (req, res) => {
-  try {
-    const workType = req.params.workType;
-    if (
-      workType === "chef" ||
-      workType === "waiter" ||
-      workType === "manager"
-    ) {
-      const response = await Person.find({ work: workType });
+try {
+const workType = req.params.workType;
+if (
+workType === "chef" ||
+workType === "waiter" ||
+workType === "manager"
+) {
+const response = await Person.find({ work: workType });
 
       console.log("response fethced");
       res.status(200).json(response);
     } else {
       res.status(404).json({ error: "Data not found" });
     }
-  } catch (err) {
-    console.log("Server Error");
-    res.status(500).json({ error: "Internal Server Error " });
-  }
-});
 
+} catch (err) {
+console.log("Server Error");
+res.status(500).json({ error: "Internal Server Error " });
+}
+});
 
 ### update operation
 
+- We will update our person record for that we will create an endpoint form where we are able to update record.
+- for updation we need two things
 
+  - Which record we want to update.
+  - What exactly we want to update.
+
+- <div> For update we will use <p style="color:red; font-size : 1.5rem;" >PUT</p> method </div> to create and end point.
+
+- What is a unique identifier in a document in a collection ?
+
+- It's /_id which is given by mongodb itself we use to find the particular record which we want to update.
+
+- and now we will send data like same as we did in Post method.
+
+<b> ex: </b>
+
+```
+router.put("/:id", async (req, res) => {
+  try {
+    const personId = req.params.id; // extract the id from the URL parameter.
+    const updatedPersonData = req.body;
+
+    const response = await Person.findByIdAndUpdate(
+      personId,
+      updatedPersonData,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!response) {
+      return res.status(404).json({ error: "Person not found" });
+    }
+    console.log("data updated");
+    res.status(200).json(response);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "internal server error" });
+  }
+});
+```
 
 ### delete operations
 
+Now to delete the Person record we will use also create an endpoint from where we will be able to delete the record.
 
+for delete we need to use one thing ?
+- which record we want to delete.
+
+
+
+
+homework
 creating same for the menu
 
-### Hoisting in node js.
-
+### Hosting in node js.
 
 ## git and git hub
 
-
-
-
 to remove any file if added mistakely
-git rm -r --cached serverOld 
-
+git rm -r --cached serverOld
 
 npm i automatically install all the packages from the package.json
 
-
-
 ### Host MongoDB databse
-
 
 ### Dotenv .env
 
 npm i dotenv
+
+### Hosting node api
