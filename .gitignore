@@ -1,1 +1,5 @@
+# ignore node module_directory
+
 node_modules
+
+# other entries.git

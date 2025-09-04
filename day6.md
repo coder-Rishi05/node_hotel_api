@@ -698,3 +698,10 @@ creating same for the menu
 
 
 ## git and git hub
+
+
+
+
+to remove any file if added mistakely
+git rm -r --cached serverOld 
+
