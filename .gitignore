@@ -3,3 +3,6 @@
 node_modules
 
 # other entries.git
+mongo.pas
+
+.env

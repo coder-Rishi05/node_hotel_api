@@ -707,3 +707,12 @@ git rm -r --cached serverOld
 
 
 npm i automatically install all the packages from the package.json
+
+
+
+### Host MongoDB databse
+
+
+### Dotenv .env
+
+npm i dotenv

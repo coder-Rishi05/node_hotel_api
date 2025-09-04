@@ -3,7 +3,7 @@ const app = express();
 // const Person = require("./models/Person");
 const Person = require("./models/Person");
 // importing db from db.js.
-
+require("dotenv").config();
 const personRoutes = require("./routes/personRoutes");
 const menuRoutes = require("./routes/menuRoutes");
 
@@ -22,9 +22,11 @@ app.get("/", function (req, res) {
 app.use("/person", personRoutes);
 app.use("/menu", menuRoutes);
 
+const PORT = process.env.PORT || 3000;
+
 try {
-  app.listen(4000, () => {
-    console.log("server is running at port 4000 ...");
+  app.listen(PORT, () => {
+    console.log(`server is running at port ${PORT} ...`);
   });
 } catch (err) {
   console.log("error in creating server : ", err);
