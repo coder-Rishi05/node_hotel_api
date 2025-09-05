@@ -3,11 +3,11 @@ require("dotenv").config();
 
 // Define the MongoDB connection URL
 
-// const mongoURL = process.env.DB_URL_LOCAL; // replace mydatabse with your database name
-
-const DB_URL = process.env.DB_URL;
-
-const mongoURL = DB_URL
+const mongoURL = "mongodb://127.0.0.1:27017/hotels"; // replace mydatabse with your database name
+//
+// const mongoURL =
+//   "mongodb+srv://rishabhrawat1800_db_user:sOg4oAGzdqqPmlch@cluster0.mnvlpnx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+//atlas
 
 // establish connection
 
