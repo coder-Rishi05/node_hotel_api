@@ -3,10 +3,9 @@ require("dotenv").config();
 
 // Define the MongoDB connection URL
 
-// const mongoURL = process.env.DB_URL_LOCAL; // replace mydatabse with your database name
+const mongoURL = process.env.DB_URL_LOCAL; // replace mydatabse with your database name
 //
-const mongoURL = process.env.DB_URL;
-//atlas
+// const mongoURL = process.env.DB_URL;//atlas
 
 // establish connection
 
@@ -38,6 +37,5 @@ db.on("error", (err) => {
 db.on("disconnected", () => {
   console.log("Mongodb Disconnected : ");
 });
-module.exports = db;
-
 // Export the database connection.
+module.exports = db;

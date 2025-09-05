@@ -13,14 +13,26 @@ const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 
-app.get("/", function (req, res) {
+// middleware
+
+const logRequest = (req, res, next) => {
+  console.log(
+    `[${new Date().toLocaleString()}] Request Made to: ${req.originalUrl} `
+  );
+  next(); // if next is not written it will not process furthur
+};
+
+// app.use(); // using middleware
+
+app.get("/", logRequest, function (req, res) {
+  // calling the function
   res.send("<h1>welcome to my Hotel ! How can i help you.</h1>");
 });
 
 // importing the router files
 
-app.use("/person", personRoutes);
-app.use("/menu", menuRoutes);
+app.use("/person", logRequest, personRoutes);
+app.use("/menu", logRequest, menuRoutes);
 
 const PORT = process.env.PORT || 3000;
 

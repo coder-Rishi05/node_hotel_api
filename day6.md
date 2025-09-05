@@ -708,7 +708,7 @@ res.status(500).json({ error: "Internal Server Error " });
 
 - What is a unique identifier in a document in a collection ?
 
-- It's /_id which is given by mongodb itself we use to find the particular record which we want to update.
+- It's /\_id which is given by mongodb itself we use to find the particular record which we want to update.
 
 - and now we will send data like same as we did in Post method.
 
@@ -746,13 +746,11 @@ router.put("/:id", async (req, res) => {
 Now to delete the Person record we will use also create an endpoint from where we will be able to delete the record.
 
 for delete we need to use one thing ?
+
 - which record we want to delete.
 
-
-
-
 homework
-creating same for the menu
+creating same for the menu ✅
 
 ### Hosting in node js.
 
@@ -770,3 +768,19 @@ npm i automatically install all the packages from the package.json
 npm i dotenv
 
 ### Hosting node api
+
+### Authentication and Authorization
+
+Day - 8
+
+<h2>MiddleWare</h2>
+
+Imagine you are at 
+
+middle ware function
+
+logging in node
+
+
+
+### authentication and authorisation
