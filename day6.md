@@ -52,6 +52,8 @@ useUnifiedTopology:true
 
 Mongoose maintain a default connection object representing the MongoDB connection. You retrieve this object using mongoose.connection, you have stored it in the variable db. This object is what you will use to handle events and interact with the databse.
 
+const db = mongoose.connection;
+
 5. Define Event Listners :
 
 You define event listners for the database connection using methods like .on(`connected`,...), .on(`error`,...), and .on(`disconnected`,...),
@@ -322,6 +324,19 @@ await newPerson.save().
 if i fill data which is not according to my person schema or ani diffrence between capitalcase or small case or duplicate value like email or phone then my server will give error with status code of 500.
 
 other wise it will run correctly.
+
+### get method to get the persoon
+
+app.get("/person", async (req,res)=>{
+  try {
+    const data = await Person.find();
+    console.log("data fetched);
+    res.status(200).json(data);
+  }
+  catch(err){
+    
+  }
+})
 
 ### Crud operation and endpoints
 

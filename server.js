@@ -16,15 +16,13 @@ app.use(bodyParser.json());
 // middleware
 
 const logRequest = (req, res, next) => {
-  console.log(
-    `[${new Date().toLocaleString()}] Request Made to: ${req.originalUrl} `
-  );
+  console.log(`[${new Date().toLocaleString()}] Request Made to: ${req.url} `);
   next(); // if next is not written it will not process furthur
 };
 
-// app.use(); // using middleware
+app.use(logRequest); // using middleware
 
-app.get("/", logRequest, function (req, res) {
+app.get("/", function (req, res) {
   // calling the function
   res.send("<h1>welcome to my Hotel ! How can i help you.</h1>");
 });
