@@ -593,8 +593,6 @@ create a folder route ----> personRoute.js
 person data
 
 ```
-
-
 // create person data
 
 app.post("/person", async (req, res) => {
@@ -766,6 +764,10 @@ for delete we need to use one thing ?
 
 homework
 creating same for the menu ✅
+
+
+
+
 
 ### Hosting in node js.
 
