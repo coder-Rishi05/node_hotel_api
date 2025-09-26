@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
-// const Person = require("./models/Person");
 const Person = require("./models/Person");
-// importing db from db.js.
+const passport = require('passport')
+const LocalStarategy = require('passport-local').Strategy;
 require("dotenv").config();
 const personRoutes = require("./routes/personRoutes");
 const menuRoutes = require("./routes/menuRoutes");
@@ -21,6 +21,16 @@ const logRequest = (req, res, next) => {
 };
 
 app.use(logRequest); // using middleware
+
+// to verify the 
+app.use(new LocalStarategy(async (username,password,done)=>{
+  // authentication logic
+  try {
+    
+  } catch (error) {
+    
+  }
+}))
 
 app.get("/", function (req, res) {
   // calling the function

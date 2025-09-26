@@ -801,3 +801,42 @@ logging in node
 
 
 ### authentication and authorisation
+
+intaslling passport and passport local stategy
+
+npm i passport passport-local
+
+1. the passport local strategy also stand for username and password starategy. It is part of Passport.js authentication middleware for Node.js. Its specially designed for handling username and password based authentication.
+
+2. The Passport Local Strategy by default expects to extract the username and password from the request body. It is a common practuce for username and password-based authentication system to send credentials as part of the request body specially in login forms.
+
+3. Add username and password.(now we have to add usename and password in the person schema )
+
+ex: 
+ username:{
+    type:String,
+    required:true,
+  },
+  password:{
+    type:String,
+    required:true,
+  },
+
+- Configure the local strategy
+
+1. Define and configure the local strategy using passport-local.
+2. You need to provide a verification function that checks the provided username and password.
+
+      passport.use(new LocalStrategy(
+        async(username,password,done)=>{
+          <!-- Authentication logic here. -->
+        }
+          ))
+
+3. in the local strategy verification function. you typically query database to find the user with the provided username. You then compare the provided password with the stored password.
+
+4. In the context of LocalStrategy, Passport.js expects the verification function to have the following signature.
+
+function(username, password,done) // this is the sequence of writing this function. It must be followed
+
+the done is callback faunction should always be the last parameter, and its essential to follow this order for Passport.js to work correctly. if you change the order of the parameter, you risk breaking the expected behaviour of Passport.js.

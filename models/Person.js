@@ -7,6 +7,14 @@ const personSchema = new mongoose.Schema({
     type: String,
     required: true, // mandatory field.
   },
+  username:{
+    type:String,
+    required:true,
+  },
+  password:{
+    type:String,
+    required:true,
+  },
   age: {
     type: Number,
     required: true,
