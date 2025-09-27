@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const Person = require("./models/Person");
-const passport = require('passport')
-const LocalStarategy = require('passport-local').Strategy;
+const passport = require("passport");
+const LocalStarategy = require("passport-local").Strategy; // LocalStarategy
 require("dotenv").config();
 const personRoutes = require("./routes/personRoutes");
 const menuRoutes = require("./routes/menuRoutes");
@@ -22,25 +22,41 @@ const logRequest = (req, res, next) => {
 
 app.use(logRequest); // using middleware
 
-// to verify the 
-app.use(new LocalStarategy(async (username,password,done)=>{
-  // authentication logic
-  try {
-    
-  } catch (error) {
-    
-  }
-}))
+// to verify the username and password
+passport.use(
+  new LocalStarategy(async (USERNAME, password, done) => {
+    // authentication logic
+    try {
+      console.log("Got password and username : ", USERNAME, password);
+      const user = await Person.findOne({ username: USERNAME });
+      if (!user) {
+        return done(null, false, { message: "Incorrect username." });
+      }
+      const isPasswordMatch = user.password === password ? true : false;
+      if (isPasswordMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false, { message: "Incorrect password" });
+      }
+    } catch (error) {
+      return done(error);
+    }
+  })
+);
 
-app.get("/", function (req, res) {
+app.use(passport.initialize()); // initializing the passport
+
+const localAuthMidd = passport.authenticate("local", { session: false });
+
+app.get("/", localAuthMidd, function (req, res) {
   // calling the function
   res.send("<h1>welcome to my Hotel ! How can i help you.</h1>");
 });
 
 // importing the router files
 
-app.use("/person", logRequest, personRoutes);
-app.use("/menu", logRequest, menuRoutes);
+app.use("/person", logRequest, localAuthMidd, personRoutes);
+app.use("/menu", localAuthMidd, menuRoutes);
 
 const PORT = process.env.PORT || 3000;
 
