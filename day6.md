@@ -840,3 +840,12 @@ ex:
 function(username, password,done) // this is the sequence of writing this function. It must be followed
 
 the done is callback faunction should always be the last parameter, and its essential to follow this order for Passport.js to work correctly. if you change the order of the parameter, you risk breaking the expected behaviour of Passport.js.
+
+
+## Bcrypt 
+
+Hashing 
+salt
+Hashpassword
+password hashing algorithm.
+ 

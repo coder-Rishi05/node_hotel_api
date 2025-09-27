@@ -32,7 +32,7 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username." });
       }
-      const isPasswordMatch = user.password === password ? true : false;
+      const isPasswordMatch = user.comparePassword(passport);
       if (isPasswordMatch) {
         return done(null, user);
       } else {
@@ -67,38 +67,3 @@ try {
 } catch (err) {
   console.log("error in creating server : ", err);
 }
-
-/*
-
-name: {
-    type: String,
-    required: true, // mandatory field.
-  },
-  age: {
-    type: Number,
-    required: true,
-  },
-  mobile: {
-    type: String,
-    required: true,
-  },
-  work: {
-    type: String,
-    enum: ["chef", "waiter", "manager"], // for multiple values.
-    required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true, // every time it will accept unique id only.
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  salary: {
-    type: Number,
-    required: true,
-  },
-
-*/
