@@ -848,4 +848,8 @@ Hashing
 salt
 Hashpassword
 password hashing algorithm.
- 
+
+
+### Day 10
+
+jwt token

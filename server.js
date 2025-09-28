@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const Person = require("./models/Person");
 const passport = require("passport");
-const LocalStarategy = require("passport-local").Strategy; // LocalStarategy
+const LocalStrategy = require("passport-local").Strategy; // LocalStrategy
 require("dotenv").config();
 const personRoutes = require("./routes/personRoutes");
 const menuRoutes = require("./routes/menuRoutes");
@@ -24,15 +24,15 @@ app.use(logRequest); // using middleware
 
 // to verify the username and password
 passport.use(
-  new LocalStarategy(async (USERNAME, password, done) => {
+  new LocalStrategy(async (username, password, done) => {
     // authentication logic
     try {
-      console.log("Got password and username : ", USERNAME, password);
-      const user = await Person.findOne({ username: USERNAME });
+      console.log("Got password and username : ", username, password);
+      const user = await Person.findOne({ username: username });
       if (!user) {
         return done(null, false, { message: "Incorrect username." });
       }
-      const isPasswordMatch = user.comparePassword(passport);
+      const isPasswordMatch = await user.comparePassword(password);
       if (isPasswordMatch) {
         return done(null, user);
       } else {
@@ -60,10 +60,10 @@ app.use("/menu", localAuthMidd, menuRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-try {
-  app.listen(PORT, () => {
+app.listen(PORT)
+  .on("listening", () => {
     console.log(`server is running at port ${PORT} ...`);
+  })
+  .on("error", (err) => {
+    console.log("error in creating server : ", err);
   });
-} catch (err) {
-  console.log("error in creating server : ", err);
-}
