@@ -33,6 +33,7 @@ passport.use(
         return done(null, false, { message: "Incorrect username." });
       }
       const isPasswordMatch = await user.comparePassword(password);
+
       if (isPasswordMatch) {
         return done(null, user);
       } else {
@@ -55,12 +56,13 @@ app.get("/", localAuthMidd, function (req, res) {
 
 // importing the router files
 
-app.use("/person", logRequest, localAuthMidd, personRoutes);
+app.use("/person", logRequest, localAuthMidd,personRoutes);
 app.use("/menu", localAuthMidd, menuRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT)
+app
+  .listen(PORT)
   .on("listening", () => {
     console.log(`server is running at port ${PORT} ...`);
   })

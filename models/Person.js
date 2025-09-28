@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const { decrypt } = require("dotenv");
 
 // creating/setup the schema/models.
 
@@ -45,22 +44,14 @@ const personSchema = new mongoose.Schema({
   },
 });
 
-//
-
-personSchema.pre("save", async (next) => {
+// hash password before save
+personSchema.pre("save", async function (next) {
   const person = this;
-  // hash the password only if it has been modified (or is new)
-
-  if (person.isModified("password")) return next();
+  if (!person.isModified("password")) return next();
 
   try {
-    // hash password generate
     const salt = await bcrypt.genSalt(10);
-    // hash password
-
     const hashPassword = await bcrypt.hash(person.password, salt);
-
-    // override the plain password with the hashed one.
     person.password = hashPassword;
     next();
   } catch (error) {
@@ -68,17 +59,16 @@ personSchema.pre("save", async (next) => {
   }
 });
 
-personSchema.method.comparePassword = async (candidatePassword) => {
+// compare password method
+personSchema.methods.comparePassword = async function (candidatePassword) {
   try {
-    const isMatch = await bcrypt.compare(candidatePassword, this.password);
-    return isMatch;
+    return await bcrypt.compare(candidatePassword, this.password);
   } catch (err) {
     throw err;
   }
 };
 
 // creating person model.
-
 const Person = mongoose.model("Person", personSchema);
 
 module.exports = Person;
