@@ -99,33 +99,33 @@ now we have diffrent types of methods in app 1 of them is get method.
  - where res is used to respond the request. here res is giving "hello world.";
 
  
- #### mthods to recieve and send data.
+ #### methods to recieve and send data.
 
-{
-   get  => it is just used to request data from the server.  ex:- when we enter website url in browser browser send get request to server .
-   post
-   patch
-   delete
-}
+```pgsql
+
+get  => it is just used to request data from the server.  ex:- when we enter website url in browser browser send get request to server .
+post => send user response or data to server.
+patch/ update => update the data
+delete => delete the data.
 
 ```
 
-<code>
+```js
+
  const express = require ("express:);
  const app = express();
-// here in app we store express js. app used to acess and create server
+ // here in app we store express js. app used to acess and create server
 
-    app.get("/", (res,req)=>{
+ app.get("/", (res,req)=>{
         res.send("This is my server.");
     })
 
-    // then we use port where we can access the web page.
-
-    app.listen(3000,()=>{
+// then we use port where we can access the web page.
+app.listen(3000,()=>{
         console.log("server is running );
     })
 
-</code>
+```
 
 
 Local host : it means own computer.
