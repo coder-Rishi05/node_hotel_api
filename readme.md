@@ -36,30 +36,31 @@ json is a type of string. it is easy to transfer from server to server.
 
 server connects cleint and database.
 
-/\*
+server only know the data which it have and defined for it. 
+This is called `endpoint`.
 
-\*/
+`api` => collection of endpoints is called api.
 
-// server only know the data which it have and defined for it. This is called endpoint.
+ creating a server.
+`locoalhost` :- it a a place where we create server.
+`port number` :- it is like a address number for the localhost
 
-// api => collection of endpoints is called api.
+# Express JS
 
-// creating a server.
-// locoalhost :- it a a place where we create server.
-// port number :- it is like a address number for the localhost
+we use express to acess server. 
 
-### Express JS
+node already have capability to use server but express is used beacuse it is easy to use.
 
-we use express to acess server. node already have capability to use server but express is used beacuse it is easy to use. express also use http which is include in node.
-
-```
- express js
+express also use http which is include in node.
 
  to create server from express we first import it in our peoject
+ 
+```js
 
-    npm i express.
+npm i express.
 
- then we use take all the functionality of express into a variable
+```
+then we use take all the functionality of express into a variable
 
  ex:
 
