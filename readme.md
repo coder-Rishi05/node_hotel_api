@@ -3,7 +3,9 @@
 ---
 
 Server : A server is a Person who communicates with clients.
+
 Analogy -> server = waiter.
+
 Analogy -> chef = database.
 
 A server is a programme that is responsible for preparing and delivering data to other computers.
@@ -18,9 +20,10 @@ Json is a way of sending the data as it is lightweight and easy to destrucutre.
 
 json data and its conversion from object to json
 
+```js
 const jsonString = {"name":"rishi","age":"18"}
 console.log(jsonObject.name)
-
+```
 json to object
 
 const jsonObject = JSON.parse(jsonString);
