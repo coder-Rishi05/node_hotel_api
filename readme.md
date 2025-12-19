@@ -26,15 +26,15 @@ console.log(jsonObject.name)
 ```
 json to object
 
+```js
 const jsonObject = JSON.parse(jsonString);
+```
 
 json is a type of string. it is easy to transfer from server to server.
 
 ---
 
----
-
-server connect cleint and data.
+server connects cleint and database.
 
 /\*
 
