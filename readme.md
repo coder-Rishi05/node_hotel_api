@@ -2,11 +2,11 @@
 
 ---
 
-Server : A server is a Person who communicates with clients.
+`Server` : A server is a Person who communicates with clients.
 
-Analogy -> server = waiter.
+`Analogy` -> server = waiter.
 
-Analogy -> chef = database.
+`Analogy` -> chef = database.
 
 A server is a programme that is responsible for preparing and delivering data to other computers.
 
