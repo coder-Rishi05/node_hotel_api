@@ -63,34 +63,43 @@ npm i express.
 then we use take all the functionality of express into a variable
 
  ex:
-
+```js
  const express = require ("express:);
  // it will import the express.
  const app = express();
  // now we can use the express functionality using the app variable.
 
+```
 
- now we have diffrent types of methods in app 1 of them is get method.
+now we have diffrent types of methods in app 1 of them is get method.
 
-    the get method take 2 args(route path and callback function.)
-    // the callback function have two args res, req. res used to send the value to the user
+- the get method take 2 args(route path and callback function. 
+ 
+- the callback function have two args res, req. res used to send the value to the user
 
+```js
     app.get("/", (res,req)=>{
         res.send("<h1>This is my server</h1>");
     })
+```
+   
+- then we use port where we can access the web page.
 
-    // then we use port where we can access the web page.
-
+```js
     app.listen(3000,()=>{
         console.log("server is running );
     })
+```
+- get is having 2 parameter ("/", (callback))
 
-     get is having 2 parameter ("/", (callback))
+ `(/)` used to get data.
+ 
+ `callback function ()=> ` :- we pass two arguments req and res.
+ 
+ - where res is used to respond the request. here res is giving "hello world.";
 
- (/) used to get data.
- callback function ()=> :- we pass two arguments req and res where res is used to respond the request. here res is giving "hello world.";
-
- mthods to recieve and send data.
+ 
+ #### mthods to recieve and send data.
 
 {
    get  => it is just used to request data from the server.  ex:- when we enter website url in browser browser send get request to server .
